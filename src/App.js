@@ -4,6 +4,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar'
 import TableTeacher from './components/TableTeacher/TableTeacher';
+import TableCourse from './components/TableCourse/TableCourse';
 
 class App extends Component {
   render() {
@@ -14,7 +15,8 @@ class App extends Component {
         <Sidebar />
           <Switch>
 
-          <Route path="/teachers" component={TableTeacher} />
+          <Route path='/teachers' component={TableTeacher} />
+          <Route path='/courses' component={TableCourse} />
           </Switch>
         </BrowserRouter>
       </>

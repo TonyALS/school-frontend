@@ -33,11 +33,18 @@ class TableTeacher extends Component {
             {teachers.map(teacher => (
               <tr key={teacher.id_teacher}>
                 <TableData
-                  id={teacher.id_teacher}
                   tdata1={teacher.first_name + ' ' + teacher.last_name}
                   tdata2={teacher.department.department_name}
-                  tdata3={teacher.status ? 'Em andamento' : 'Dispensado'}
-                  class={teacher.status ? 'text-success text-center' : 'text-warning text-center'}
+                  tdata3={teacher.status 
+                    ? 
+                    'Em andamento' 
+                    : 
+                    'Dispensado'}
+                  class={teacher.status 
+                    ? 
+                    'text-success text-center' 
+                    : 
+                    'text-warning text-center'}
                 />
               </tr>
             ))}
