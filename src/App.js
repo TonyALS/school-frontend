@@ -3,6 +3,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar'
+import TableTeacher from './components/TableTeacher/TableTeacher';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         <Sidebar />
           <Switch>
 
+          <Route path="/teachers" component={TableTeacher} />
           </Switch>
         </BrowserRouter>
       </>
