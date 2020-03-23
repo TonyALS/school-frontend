@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TableHead from '../TableComponents/TableHead';
-import TableBody from '../TableComponents/TableBody';
+import TableData from '../TableComponents/TableData';
 
 import api from '../../services/api';
 
@@ -29,14 +29,19 @@ class TableTeacher extends Component {
               theader3='Status do Contrato' 
               theader4='Opções'
             />
+            <tbody>
             {teachers.map(teacher => (
-              <TableBody 
-              tdata1={teacher.first_name + ' ' + teacher.last_name}
-              tdata2={teacher.department.department_name}
-              tdata3={teacher.status ? 'Em andamento' : 'Dispensado'}
-              class={teacher.status ? 'text-success' : 'text-warning'}
-            />
+              <tr key={teacher.id_teacher}>
+                <TableData
+                  id={teacher.id_teacher}
+                  tdata1={teacher.first_name + ' ' + teacher.last_name}
+                  tdata2={teacher.department.department_name}
+                  tdata3={teacher.status ? 'Em andamento' : 'Dispensado'}
+                  class={teacher.status ? 'text-success text-center' : 'text-warning text-center'}
+                />
+              </tr>
             ))}
+            </tbody>
           </table>
         </div>
       </div>
