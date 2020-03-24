@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FormInput from '../FormComponents/FormInput';
 
 import api from '../../services/api';
 
@@ -17,16 +18,23 @@ class FormContent extends Component {
   async componentDidMount() {
     const response = await api.get('/departments')
     this.setState({ departments: response.data.rows })
-    console.log(this.state.departments)
   }
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(this.state.department_id)
+    console.log(this.state.course_name, this.state.mec_authorization)
   }
 
   handleChange = (e) => {
     this.setState({ department_id: e.target.value, department_name: true })
+  }
+
+  changeCourse = (e) => {
+    this.setState({ course_name: e.target.value })
+  }
+
+  changeMec= (e) => {
+    this.setState({ mec_authorization: e.target.value })
   }
 
   render() {
@@ -40,20 +48,14 @@ class FormContent extends Component {
       <form className="text-center border border-light p-5 mb-6" onSubmit={this.handleSubmit}>
         <div className="card-body">
             <div className="form-row">
-              <div className="form-group col-md-6">
-              <label>Digite o nome do novo curso</label>
-              <input type="text" className="form-control" 
-                placeholder="Digite o nome do novo curso"
-                onChange={(e) => this.setState({ course_name: e.target.value })}
+              <FormInput 
+                label='Digite o nome do curso'
+                change={this.changeCourse}
               />
-              </div>
-              <div className="form-group col-md-6">
-                <label>Digite o número da portaria MEC (se houver)</label>
-                <input type="text" className="form-control" 
-                  placeholder="Número da portaria MEC (se houver)"
-                  onChange={(e) => this.setState({ mec_authorization: e.target.value })}
-                />
-              </div>
+              <FormInput 
+                label='Digite a portaria de autorização MEC'
+                change={this.changeMec}
+              />
               <div className="form-group col-md-6">
               <label>Selecione o departamento</label>
               <select className="form-control" onChange={this.handleChange}

@@ -5,7 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar'
 import TableTeacher from './components/TableTeacher/TableTeacher';
 import TableCourse from './components/TableCourse/TableCourse';
-import Form from './components/FormComponents/Form';
+import FormCourse from './components/FormCourse/FormCourse';
 
 class App extends Component {
   render() {
@@ -16,9 +16,9 @@ class App extends Component {
         <Sidebar />
           <Switch>
 
-          <Route path='/teachers' component={TableTeacher} />
-          <Route path='/courses' component={TableCourse} />
-          <Route path='/course/new' component={Form} />
+            <Route path='/teachers' component={TableTeacher} />
+            <Route path='/courses' component={TableCourse} />
+            <Route path='/course/new' component={FormCourse} />
           </Switch>
         </BrowserRouter>
       </>
