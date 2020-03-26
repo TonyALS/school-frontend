@@ -1,25 +1,22 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import TableHead from '../TableComponents/TableHead';
 import TableData from '../TableComponents/TableData';
 
 import api from '../../services/api';
 
-class TableTeacher extends Component {
-  constructor() {
-    super();
-    this.state = {
-      teachers: []
+function TableTeacher() {
+  const [teachers, setTeachers] = useState([]);
+
+  useEffect(() => {
+    async function connectApi() {
+      const response = await api.get('/teachers');
+      setTeachers(response.data)
     }
-  }
 
-  async componentDidMount() {
-    const response = await api.get('/teachers');
-    this.setState({ teachers: response.data })
-  }
-
-  render() {
-    const teachers = this.state.teachers;
-    return (
+    connectApi();
+  }, [])
+  
+  return (
       <div className="content-wrapper">
         <div className="card-body">
           <table className="table table-bordered table-hover">
@@ -52,8 +49,7 @@ class TableTeacher extends Component {
           </table>
         </div>
       </div>
-    );
-  }
+  );
 }
 
 export default TableTeacher;
