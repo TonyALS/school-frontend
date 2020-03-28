@@ -9,10 +9,10 @@ import FormEditCourse from '../components/FormCourse/FormEditCourse';
 export default function Routes() {
   return (
     <Switch>
-      <Route path='/teachers' component={TableTeacher} />
-      <Route path='/courses' component={TableCourse} />
-      <Route path='/course/new' component={FormNewCourse} />
-      <Route path='/course/edit/:id_course' component={FormEditCourse} />
+      <Route path="/teachers" component={TableTeacher} />
+      <Route path="/courses" component={TableCourse} />
+      <Route path="/course/new" component={FormNewCourse} />
+      <Route path="/course/edit/:id_course" component={FormEditCourse} />
     </Switch>
   );
 }

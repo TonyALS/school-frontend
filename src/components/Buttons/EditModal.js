@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
 import EditIcon from '@material-ui/icons/Edit';
 import { Link } from 'react-router-dom';
 
 export default function DeleteModal(props) {
+  const { link } = props;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -23,9 +25,9 @@ export default function DeleteModal(props) {
           <Button variant="secondary" onClick={handleClose}>
             Cancelar
           </Button>
-          <Link to={props.link}>
+          <Link to={link}>
             <Button variant="danger" onClick={handleClose}>
-                Ir para página de edição 
+              Ir para página de edição
             </Button>
           </Link>
         </Modal.Footer>
@@ -33,3 +35,7 @@ export default function DeleteModal(props) {
     </>
   );
 }
+
+DeleteModal.propTypes = {
+  link: PropTypes.string.isRequired,
+};
