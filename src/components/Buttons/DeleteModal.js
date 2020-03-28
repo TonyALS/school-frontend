@@ -10,14 +10,14 @@ export default function DeleteModal(props) {
 
   return (
     <>
-      <Button data-toggle="modal" className="mr-4" variant="danger" size="sm" onClick={handleShow}>
+      <Button data-toggle="modal" className="mr-4" variant="danger" style={{ color: '#fff'}} size="sm" onClick={handleShow}>
         <Delete fontSize="small" />
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmar exclusão</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Deseja realmente excluir o curso selecionado?</Modal.Body>
+        <Modal.Body>{props.dialogBody}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Cancelar
