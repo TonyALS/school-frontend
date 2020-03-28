@@ -3,6 +3,8 @@ import api from '../../services/api';
 import { Table as TableReact } from 'react-bootstrap';
 import DeleteModal from '../Buttons/DeleteModal';
 import EditModal from '../Buttons/EditModal';
+import ErrorRoundedIcon from '@material-ui/icons/ErrorRounded';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 
 import { toast } from 'react-toastify';
 
@@ -56,13 +58,21 @@ export default function Table() {
                   <td className='text-center'>
                     { course.mec_authorization
                       ?
-                      'Portaria nº: ' + course.mec_authorization
+                      <span>
+                        <CheckCircleRoundedIcon style={{color: '#1976d2'}} className='mr-2'/>
+                        {'Portaria nº: ' + course.mec_authorization}
+                      </span>
                       :
-                      'Não autorizado'
+                      <span>
+                        <ErrorRoundedIcon style={{color: '#e57373'}} className='mr-2'/>
+                        Aguardando autorização
+                      </span>
                     }
                   </td>
                   <td className='text-center'>
-                    <DeleteModal handleDelete={() => handleDelete(course.id_course)}/>
+                    <DeleteModal handleDelete={() => handleDelete(course.id_course)}
+                      dialogBody='Deseja realmente excluir o curso selecionado?'
+                    />
                     <EditModal link={`/course/edit/${course.id_course}`} />
                   </td>
                 </tr>
