@@ -30,7 +30,7 @@ export default function Table() {
         return null;
       });
       setCourses(newCourses);
-      toast.success(response.data.success, { autoClose: 2000 });
+      toast.info(response.data.success, { autoClose: 2000 });
     } catch (err) {
       return toast.error(err.response.data.error, { autoClose: 2000 });
     }
