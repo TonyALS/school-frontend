@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Form, Field, withFormik, ErrorMessage } from 'formik';
+import SaveIcon from '@material-ui/icons/Save';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import * as Yup from 'yup';
@@ -88,8 +90,10 @@ const NewCourse = ({ isSubmitting }) => {
                           className="btn btn-primary btn-block btn my-5"
                           disabled={isSubmitting}
                           type="submit"
+                          style={{ fontWeight: 'bold' }}
                         >
-                          Cadastrar
+                          <SaveIcon className="mr-2" />
+                          Salvar
                         </button>
                       </div>
                       <div className="form-group col-md-6">
@@ -98,7 +102,9 @@ const NewCourse = ({ isSubmitting }) => {
                             className="btn btn-secondary btn-block btn my-5"
                             disabled={isSubmitting}
                             type="submit"
+                            style={{ fontWeight: 'bold' }}
                           >
+                            <FormatListBulletedIcon className="mr-2" />
                             Ir para listagem
                           </button>
                         </Link>
