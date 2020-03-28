@@ -144,7 +144,7 @@ const FormEdit = withFormik({
         department_id, course_name, mec_authorization
       });
 
-      toast.success(response.data.success, { autoClose: 3000 });
+      toast.info(response.data.success, { autoClose: 3000 });
 
     } catch (err) {
       toast.error('Erro! ' + err.response.data.error, { autoClose: 4000 });

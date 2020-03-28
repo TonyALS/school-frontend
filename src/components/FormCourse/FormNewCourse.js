@@ -120,7 +120,7 @@ const FormNewCourse = withFormik({
       const response = await api.post('/courses', {
         department_id, course_name, mec_authorization
       });
-      toast.success(response.data.success, { autoClose: 3000 });
+      toast.info(response.data.success, { autoClose: 3000 });
       resetForm();
     } catch (err) {
       toast.error(err.response.data.error, { autoClose: 4000 });
