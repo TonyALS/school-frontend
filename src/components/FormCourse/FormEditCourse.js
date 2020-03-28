@@ -35,8 +35,6 @@ const EditCourse= (props, { isSubmitting }) => {
     connectApi();
     
   }, [initialValues.id_course])
-  // console.log(oldData)
-  // console.log(initialValues)
 
   return (
     <div className="content-wrapper">
