@@ -10,13 +10,15 @@ const EditCourse= (props, { isSubmitting }) => {
   
   const [department, setDepartment] = useState([]);
   const [oldData, setOldData] = useState([]);
-  
   const { match, initialValues } = props;
   
-  initialValues.id_course = match.params.id_course;
-  initialValues.course_name = oldData.course_name;
-  initialValues.department_id = oldData.department_id;
-  initialValues.mec_authorization = oldData.mec_authorization;
+  useEffect(() => {
+    async function connectApi() {
+      const response = await api.get(`/course/${initialValues.id_course}`);
+      setOldData(response.data)
+    }
+    connectApi();
+  }, [initialValues.id_course]);
 
   useEffect(() => {
     async function connectApi() {
@@ -26,15 +28,13 @@ const EditCourse= (props, { isSubmitting }) => {
     connectApi();
 
   }, [])
-
-  useEffect(() => {
-    async function connectApi() {
-      const response = await api.get(`/course/${initialValues.id_course}`);
-      setOldData(response.data)
-    }
-    connectApi();
-    
-  }, [initialValues.id_course])
+  
+  //  Iniciamos os valores com os parâmetros do useState ou com '' vazio para evitar
+  //  o erro 'A component is changing an uncontrolled input of type text to be controlled'.
+  initialValues.id_course = match.params.id_course || '';
+  initialValues.course_name = oldData.course_name || '';
+  initialValues.department_id = oldData.department_id || '';
+  initialValues.mec_authorization = oldData.mec_authorization || '';
 
   return (
     <div className="content-wrapper">
@@ -111,9 +111,9 @@ const FormEdit = withFormik({
     return {
       //  email: email || 'Valor inicial' => campo onde podemos iniciar o input com algum valor 
       //  ou deixar vazio.
-      course_name: course_name || '',
-      department_id: department_id || '',
-      mec_authorization: mec_authorization || '',
+      course_name: course_name,
+      department_id: department_id,
+      mec_authorization: mec_authorization,
       id_course: id_course
     }
   },
@@ -138,7 +138,6 @@ const FormEdit = withFormik({
       mec_authorization,
       id_course
     } = values;
-    console.log('WithFormik', values)
     
     try {
       const response = await api.put(`/course/edit/${id_course}`, {
