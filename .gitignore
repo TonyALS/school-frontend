@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# old files
+/old
+
+# AdminLTE base template
+/AdminLTE-3.0.2
