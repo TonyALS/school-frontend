@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-
-import TableHead from '../TableComponents/TableHead';
-import TableData from '../TableComponents/TableData';
-
 import api from '../../services/api';
+import { Table as TableReact } from 'react-bootstrap';
+import DeleteModal from '../Buttons/DeleteModal';
+import EditModal from '../Buttons/EditModal';
 
-function TableCourse() {
+import { toast } from 'react-toastify';
+
+export default function Table() {
+  
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
@@ -16,40 +18,59 @@ function TableCourse() {
     connectApi();
   }, []);
 
-  return(
+  async function handleDelete (id) {
+    try {
+      const response = await api.delete(`/courses/${id}`);
+      let newCourses = []
+      courses.map(course => {
+        if (course.id_course !== id ) {
+          return newCourses = [...newCourses, course]
+        } else {
+          return null;
+        }
+      })
+      setCourses(newCourses);
+      toast.success(response.data.success, { autoClose: 2000});
+    } catch (err) {
+      return toast.error(err.response.data.error, { autoClose: 2000});
+    }
+  }
+
+  return (
     <div className="content-wrapper">
       <div className="card-body">
-        <table className="table table-bordered table-hover">
-          <TableHead 
-            theader1='Nome do Curso' 
-            theader2='Departamento' 
-            theader3='Portaria de autorização do MEC' 
-            theader4='Opções'
-          />
-          <tbody>
-            {courses.map(course => (
-              <tr key={course.id_course}>
-                <TableData 
-                  tdata1={course.course_name}
-                  tdata2={course.department.department_name}
-                  tdata3={course.mec_authorization 
-                    ? 
-                    'Portaria nº: ' + course.mec_authorization 
-                    : 
-                    'Não autorizado'}
-                  class={course.mec_authorization 
-                    ? 
-                    'text-success text-center' 
-                    : 
-                    'text-warning text-center'}
-                />
+          <TableReact striped bordered hover>
+            <thead className='thead-dark'>
+              <tr>
+                <th className='text-center'>Nome do Curso</th>
+                <th className='text-center'>Departamento</th>
+                <th className='text-center'>Portaria de autorização do MEC</th>
+                <th className='text-center'>Opções</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              { courses.map(course => (
+                <tr key={course.id_course} >
+                  <td className='text-center'>{course.course_name}</td>
+                  <td className='text-center'>{course.department.department_name}</td>
+                  <td className='text-center'>
+                    { course.mec_authorization
+                      ?
+                      'Portaria nº: ' + course.mec_authorization
+                      :
+                      'Não autorizado'
+                    }
+                  </td>
+                  <td className='text-center'>
+                    <DeleteModal handleDelete={() => handleDelete(course.id_course)}/>
+                    <EditModal link={`/course/edit/${course.id_course}`} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </TableReact>
       </div>
     </div>
-  );
+  )
 }
 
-export default TableCourse;
