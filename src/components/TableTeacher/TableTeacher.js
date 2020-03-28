@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table as TableReact } from 'react-bootstrap';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
-import AssignmentLateIcon from '@material-ui/icons/AssignmentLate';
+import ErrorRoundedIcon from '@material-ui/icons/ErrorRounded';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import { toast } from 'react-toastify';
 import DeleteModal from '../Buttons/DeleteModal';
 import EditModal from '../Buttons/EditModal';
@@ -55,7 +55,7 @@ export default function TableTeacher() {
                 <td className="text-center">
                   {teacher.status ? (
                     <span>
-                      <AssignmentTurnedInIcon
+                      <CheckCircleRoundedIcon
                         style={{ color: '#1976d2' }}
                         className="mr-2"
                       />
@@ -63,7 +63,7 @@ export default function TableTeacher() {
                     </span>
                   ) : (
                     <span>
-                      <AssignmentLateIcon
+                      <ErrorRoundedIcon
                         style={{ color: '#e57373' }}
                         className="mr-2"
                       />
