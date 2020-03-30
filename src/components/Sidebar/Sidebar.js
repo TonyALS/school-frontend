@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 const Sidebar = () => {
   return (
@@ -41,12 +43,22 @@ const Sidebar = () => {
                   <li className="nav-item">
                     <Link to="/teachers" className="nav-link">
                       <i className="far nav-icon" />
+                      <FormatListBulletedIcon
+                        className="mr-2"
+                        fontSize="small"
+                        style={{ marginTop: -3 }}
+                      />
                       <p>Listar todos</p>
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link to="/teachers/new" className="nav-link">
                       <i className="far nav-icon" />
+                      <AddCircleOutlineIcon
+                        className="mr-2"
+                        fontSize="small"
+                        style={{ marginTop: -5 }}
+                      />
                       <p>Cadastrar</p>
                     </Link>
                   </li>
@@ -64,12 +76,22 @@ const Sidebar = () => {
                   <li className="nav-item">
                     <Link to="/courses" className="nav-link">
                       <i className="far nav-icon" />
+                      <FormatListBulletedIcon
+                        className="mr-2"
+                        fontSize="small"
+                        style={{ marginTop: -3 }}
+                      />
                       <p>Listar todos</p>
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link to="/course/new" className="nav-link">
                       <i className="far nav-icon" />
+                      <AddCircleOutlineIcon
+                        className="mr-2"
+                        fontSize="small"
+                        style={{ marginTop: -5 }}
+                      />
                       <p>Cadastrar</p>
                     </Link>
                   </li>
