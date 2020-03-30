@@ -9,17 +9,25 @@ Frontend sendo desenvolvido em ReactJS para consumo da API criada em NodeJS disp
 2. Clone este repositório;
 3. Execute o comando `yarn` ou `npm`para instalação dos pacotes necessários;
 4. Preencha o caminho do host que está rodando a API do backend da aplicação. Para isso acesse a pasta `src/services` e no arquivo `api.js`substitua as credenciais de acesso de baseURL do axios pelo caminho em que está rodando API backend;
-5. Execute `yarn start` ou `npm start`para iniciar a aplicação. 
+5. Execute `yarn start` ou `npm start`para iniciar a aplicação.
 
 ## Pontos importantes
 * Este projeto está sendo desenvolvido para fins de estudo e não integra grade de nenhum curso, seja superior ou extra-classe, podendo, portanto, sofrer alterações em sua estrutura conforme novos conceitos forem sendo estudados;
 * Sugestões de melhoria ou auxílio no desenvolvimento são bem-vindos.
 
 ## Check-list de implementações iniciais:
-> [x] = iniciadas | [ ] = não iniciadas
+> [x] = concluídas | [ ] = em desenvolvimento
 
-- [X] Cadastro de professores;
 - [X] Cadastro de cursos;
+- [X] Listagem de cursos;
+- [X] Edição de cursos;
+- [X] Exclusão de cursos;
+
+- [X] Cadastro de professores (sendo refatorado);
+- [X] Listagem de professores;
+- [X] Exclusão de professores;
+- [ ] Edição de professores;
+
 - [ ] Cadastro de departamentos;
 - [ ] Cadastro de alunos;
 - [ ] Cadastro de classes(turmas) no banco de dados.
@@ -27,7 +35,6 @@ Frontend sendo desenvolvido em ReactJS para consumo da API criada em NodeJS disp
 > Validações adicionais estão sendo estudadas.
 
 ## Check-list de implementações futuras:
-> [x] = iniciadas | [ ] = não iniciadas
 
 - [ ] Relatórios iniciais sobre departamentos;
 - [ ] Relatórios iniciais sobre cursos;
