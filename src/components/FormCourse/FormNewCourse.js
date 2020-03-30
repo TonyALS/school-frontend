@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import * as Yup from 'yup';
 import api from '../../services/api';
 
-const NewCourse = ({ isSubmitting }) => {
+const NewCourse = ({ isSubmitting, status, errors }) => {
   const [department, setDepartment] = useState([]);
 
   useEffect(() => {
@@ -49,6 +49,9 @@ const NewCourse = ({ isSubmitting }) => {
                           component="span"
                           name="course_name"
                         />
+                        {status && (
+                          <p className="text-danger">{errors.notUnique}</p>
+                        )}
                       </div>
 
                       <div className="form-group col-md-6">
@@ -146,9 +149,11 @@ const FormNewCourse = withFormik({
     department_id: Yup.string().required('Selecione um departamento.'),
   }),
 
-  async handleSubmit(values, { resetForm, setSubmitting }) {
+  async handleSubmit(
+    values,
+    { resetForm, setSubmitting, setStatus, setErrors }
+  ) {
     const { department_id, course_name, mec_authorization } = values;
-
     try {
       const response = await api.post('/courses', {
         department_id,
@@ -158,7 +163,12 @@ const FormNewCourse = withFormik({
       toast.info(response.data.success, { autoClose: 3000 });
       resetForm();
     } catch (err) {
-      toast.error(err.response.data.error, { autoClose: 4000 });
+      if (err.response.status === 400) {
+        setErrors({ notUnique: err.response.data.error });
+        setStatus(true);
+      } else {
+        toast.error(err.response.data.error, { autoClose: 4000 });
+      }
     }
     setSubmitting(false);
   },
@@ -168,4 +178,15 @@ export default FormNewCourse;
 
 NewCourse.propTypes = {
   isSubmitting: PropTypes.bool.isRequired,
+  status: PropTypes.bool,
+  errors: PropTypes.shape({
+    notUnique: PropTypes.string,
+  }),
+};
+
+NewCourse.defaultProps = {
+  status: false,
+  errors: {
+    notUnique: '',
+  },
 };
